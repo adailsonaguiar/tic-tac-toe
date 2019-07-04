@@ -75,4 +75,54 @@ const tic_tac_toe = {
         }
         this.container_element.innerHTML = content
     },
+
+    formatatempo(segs) {
+        min = 0
+        hr = 0
+        /*
+        if hr < 10 then hr = "0"&hr
+        if min < 10 then min = "0"&min
+        if segs < 10 then segs = "0"&segs
+        */
+        while (segs >= 60) {
+            if (segs >= 60) {
+                segs -= 60
+                min += 1
+            }
+        }
+
+        while (min >= 60) {
+            if (min >= 60) {
+                min -= 60
+                hr += 1
+            }
+        }
+
+        if (hr < 10) { hr = "0" + hr }
+        if (min < 10) { min = "0" + min }
+        if (segs < 10) { segs = "0" + segs }
+        fin = hr + ":" + min + ":" + segs
+        return fin
+    },
+
+    segundos: 0, //inicio do cronometro
+
+    conta() {
+        segundos++
+        document.getElementById("counter").innerHTML = formatatempo(segundos)
+    },
+
+    inicia() {
+        interval = setInterval("conta();", 1000)
+    },
+
+    para() {
+        clearInterval(interval);
+    },
+
+    zera() {
+        clearInterval(interval);
+        segundos = 0;
+        document.getElementById("counter").innerHTML = formatatempo(segundos);
+    },
 }
